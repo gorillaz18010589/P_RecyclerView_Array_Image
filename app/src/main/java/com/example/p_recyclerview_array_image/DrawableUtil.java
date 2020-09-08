@@ -74,7 +74,7 @@ public class DrawableUtil {
      * @param drawable
      * @return
      */
-    public    Bitmap drawableToBitmap(Drawable drawable) {
+    public   Bitmap drawableToBitmap(Drawable drawable) {
         //取drawable的宽高
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
@@ -90,5 +90,21 @@ public class DrawableUtil {
         //把drawable内容画到画布中
         drawable.draw(canvas);
         return bitmap;
+    }
+
+
+    public List<String> getImageName(String imgName) {
+        List<String> imgList = new ArrayList<>();
+        Resources resources = context.getResources();
+        Field[] fields = R.drawable.class.getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            fields[i].setAccessible(true);
+            String name = fields[i].getName();
+            if (name.contains(imgName)) {
+                String ename = fields[i].getName();
+                imgList.add(ename);
+            }
+        }
+        return imgList;
     }
 }

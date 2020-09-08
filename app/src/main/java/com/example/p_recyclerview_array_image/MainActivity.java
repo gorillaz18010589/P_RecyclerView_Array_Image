@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Object[][] imgs  ;
     private ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
             Bitmap bitmap = drawableUtil.drawableToBitmap(drawable);
             img.setImageBitmap(bitmap);
             Log.v("hank","integer:" );
+        }
+
+        List<String> names = new ArrayList<>();
+        names = drawableUtil.getImageName("ic_");
+        for(String name :names){
+            Log.v("hank","name:" +name);
         }
     }
 }
